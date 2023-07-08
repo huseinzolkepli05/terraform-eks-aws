@@ -59,3 +59,14 @@ resource "aws_default_subnet" "subnet2" {
 resource "aws_default_subnet" "subnet3" {
   availability_zone = "ap-southeast-1c"
 }
+
+
+resource "aws_eks_cluster" "test" {
+  name     = "test"
+  role_arn = aws_iam_role.controlplane.arn
+
+  vpc_config {
+    subnet_ids = [aws_default_subnet.subnet1.id, aws_default_subnet.subnet2.id, aws_default_subnet.subnet3.id]
+  }
+}
+
