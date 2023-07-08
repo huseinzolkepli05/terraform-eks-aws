@@ -48,9 +48,14 @@ resource "aws_iam_role_policy_attachment" "controlplane_attachment" {
   role       = aws_iam_role.controlplane.name
 }
 
-data "aws_subnets" "default" {
-  filter {
-    name   = ""
-    values = ["vpc-1ebdf679"]
-  }
+resource "aws_default_subnet" "subnet1" {
+  availability_zone = "ap-southeast-1a"
+}
+
+resource "aws_default_subnet" "subnet2" {
+  availability_zone = "ap-southeast-1b"
+}
+
+resource "aws_default_subnet" "subnet3" {
+  availability_zone = "ap-southeast-1c"
 }
