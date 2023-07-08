@@ -47,3 +47,10 @@ resource "aws_iam_role_policy_attachment" "controlplane_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.controlplane.name
 }
+
+data "aws_subnets" "default" {
+  filter {
+    name   = ""
+    values = ["vpc-1ebdf679"]
+  }
+}
