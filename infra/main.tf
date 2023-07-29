@@ -116,3 +116,13 @@ resource "aws_eks_node_group" "node1" {
   capacity_type = "SPOT"
 
 }
+
+resource "aws_acm_certificate" "cert" {
+  domain_name       = "test.huseincomel.site"
+  subject_alternative_names = ["*.test.huseincomel.site"]
+  validation_method = "DNS"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
