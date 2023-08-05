@@ -22,3 +22,10 @@ proxy:
     containerPort: 8443
     # Set a target port for the TLS port in proxy service
     overrideServiceTargetPort: 8000
+
+admin:
+  enabled: true
+  http:
+    # Enable plaintext HTTP listen for the admin API
+    # Disabling this and using a TLS listen only is recommended for most configuration
+    enabled: true
