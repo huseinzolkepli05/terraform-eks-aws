@@ -63,14 +63,10 @@ spec:
               mountPath: /etc/prometheus/
           args:
             - "--config.file=/etc/prometheus/prometheus.yaml"
+            - "--storage.tsdb.path=/prometheus/"
             - "--web.enable-lifecycle"
 
       volumes:
         - name: prometheus-config
           configMap:
             name: prometheus-config
-
-      securityContext:
-        fsGroup: 2000
-        runAsNonRoot: true
-        runAsUser: 1000
