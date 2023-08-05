@@ -1,0 +1,24 @@
+proxy:
+  # Enable creating a Kubernetes service for the proxy
+  enabled: true
+  type: LoadBalancer
+  loadBalancerClass:
+  # Override proxy Service name
+  nameOverride: ""
+  # To specify annotations or labels for the proxy service, add them to the respective
+  # "annotations" or "labels" dictionaries below.
+  annotations:
+    # If terminating TLS at the ELB, the following annotations can be used
+    "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": "https"
+    "service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled": "true"
+    "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": "arn:aws:acm:ap-southeast-1:177016185209:certificate/f39b60f0-740a-4e20-bc06-f3a98afd942c"
+    "service.beta.kubernetes.io/aws-load-balancer-ssl-ports": "kong-proxy-tls"
+    "service.beta.kubernetes.io/aws-load-balancer-type": "elb"
+
+  tls:
+    # Enable HTTPS listen for the proxy
+    enabled: true
+    servicePort: 443
+    containerPort: 8443
+    # Set a target port for the TLS port in proxy service
+    overrideServiceTargetPort: 8000
