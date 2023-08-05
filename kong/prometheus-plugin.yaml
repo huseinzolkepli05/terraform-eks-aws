@@ -1,5 +1,5 @@
 apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
+kind: KongClusterPlugin
 metadata:
   name: prometheus-global
   annotations:
@@ -8,7 +8,7 @@ metadata:
     global: "true"
 plugin: prometheus
 config:
-  per_consumer: false
+  per_consumer: true
   status_code_metrics: true
   latency_metrics: true
   upstream_health_metrics: true
